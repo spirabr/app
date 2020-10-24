@@ -28,7 +28,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int counter = 0;
+  var _counter = 0;
+
+  _onClickHandler() {
+    setState(() {
+      this._counter += 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +49,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              '$counter',
+              '$_counter',
               style: TextStyle(
                 color: darkGreen,
                 fontSize: 20,
@@ -55,12 +61,8 @@ class _HomeState extends State<Home> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            this.counter += 1;
-          });
-        },
-        child: Icon(Icons.mic),
+        onPressed: _onClickHandler,
+        child: Icon(Icons.add),
       ),
     );
   }
