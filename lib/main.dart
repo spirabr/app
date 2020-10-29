@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'novaColeta.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,19 +29,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var _counter = 0;
-
-  _onClickHandler() {
-    setState(() {
-      this._counter += 1;
-    });
-  }
+  String dropdownValue = "Two";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("SPIRA"),
+        backgroundColor: Colors.transparent,
       ),
       body: Container(
         width: double.infinity,
@@ -48,21 +44,41 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              '$_counter',
-              style: TextStyle(
-                color: darkGreen,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            DropdownButton<String>(
+              value: dropdownValue,
+              icon: Icon(Icons.arrow_downward),
+              iconSize: 24,
+              elevation: 16,
+              style: TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
               ),
+              onChanged: (String newValue) {
+                setState(() {
+                  dropdownValue = newValue;
+                });
+              },
+              items: <String>['One', 'Two', 'Free', 'Four']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
-            Text("Texto 2")
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return NovaColeta(dropdownValue);
+                }));
+              },
+              child: Text("Próximo", style: TextStyle(color: Colors.white)),
+              color: Theme.of(context).primaryColor,
+            )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _onClickHandler,
-        child: Icon(Icons.add),
       ),
     );
   }
