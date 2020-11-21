@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class NovaColeta extends StatefulWidget {
-  NovaColeta(String dropdownValue);
+  final Collector selectedCollector;
+
+  NovaColeta(Collector this.selectedCollector);
+
   @override
   _NovaColetaState createState() => _NovaColetaState();
 }
@@ -10,42 +14,28 @@ class _NovaColetaState extends State<NovaColeta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("SPIRA - Menu Principal"),
+        backgroundColor: brightGreen,
+      ),
       body: Center(
         child: Container(
-          width: 190,
+          width: 200,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    side: BorderSide(
-                  color: Theme.of(context).primaryColor,
-                  width: 2,
-                )),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.history,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      Text(
-                        "Histórico",
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                onPressed: () {},
-              ),
               Container(
+                child: Text(
+                  "Bem vinda(o), ${widget.selectedCollector.toString()}!",
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize:  20,
+                  ),
+                  textAlign: TextAlign.center,
+                )
+              ),
+              Container (
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
@@ -74,7 +64,7 @@ class _NovaColetaState extends State<NovaColeta> {
                   onPressed: () {},
                 ),
               ),
-              Container(
+              Container (
                 child: TextButton(
                   child: Text(
                     "Instruções",
