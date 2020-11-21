@@ -29,14 +29,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String dropdownValue = "Two";
+  Collector selectedCollector;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("SPIRA"),
-        backgroundColor: Colors.transparent,
+        title: Text("SPIRA - Selecione seu usuário"),
+        backgroundColor: brightGreen,
       ),
       body: Container(
         width: double.infinity,
@@ -44,26 +44,25 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            DropdownButton<String>(
-              value: dropdownValue,
+            DropdownButton<Collector>(
+              value: selectedCollector,
               icon: Icon(Icons.arrow_downward),
               iconSize: 24,
-              elevation: 16,
-              style: TextStyle(color: Colors.deepPurple),
+              elevation: 20,
+              style: TextStyle(color: Colors.grey[900], fontSize: 18),
               underline: Container(
                 height: 2,
-                color: Colors.deepPurpleAccent,
+                color: Theme.of(context).accentColor,
               ),
-              onChanged: (String newValue) {
+              onChanged: (Collector newCollector) {
                 setState(() {
-                  dropdownValue = newValue;
+                  selectedCollector = newCollector;
                 });
               },
-              items: <String>['One', 'Two', 'Free', 'Four']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
+              items: collectors.map<DropdownMenuItem<Collector>>((Collector c) {
+                return DropdownMenuItem<Collector>(
+                  value: c,
+                  child: Text(c.toString()),
                 );
               }).toList(),
             ),
@@ -71,10 +70,16 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  return NovaColeta(dropdownValue);
+                  return NovaColeta(selectedCollector);
                 }));
               },
-              child: Text("Próximo", style: TextStyle(color: Colors.white)),
+              child: Text(
+                "Próximo", style:
+                TextStyle(
+                  color: Colors.grey[50],
+                  fontSize: 16
+                )
+              ),
               color: Theme.of(context).primaryColor,
             )
           ],
