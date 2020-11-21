@@ -1,3 +1,4 @@
+import 'package:app/gravacao.dart';
 import 'package:flutter/material.dart';
 
 class NovaColeta extends StatefulWidget {
@@ -71,9 +72,15 @@ class _NovaColetaState extends State<NovaColeta> {
                       ],
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return Gravacao();
+                }));
+                 })
+    
                 ),
-              ),
+            
               Container(
                 child: TextButton(
                   child: Text(
