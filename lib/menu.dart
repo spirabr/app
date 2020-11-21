@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-class NovaColeta extends StatefulWidget {
+class Menu extends StatefulWidget {
   final Collector selectedCollector;
 
-  NovaColeta(Collector this.selectedCollector);
+  Menu(Collector this.selectedCollector);
 
   @override
-  _NovaColetaState createState() => _NovaColetaState();
+  _MenuState createState() => _MenuState();
 }
 
-class _NovaColetaState extends State<NovaColeta> {
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

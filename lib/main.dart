@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
-import 'novaColeta.dart';
+import 'menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,18 +18,18 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Montserrat',
       ),
-      home: Home(),
+      home: SelectCollector(),
     );
   }
 }
 
-class Home extends StatefulWidget {
+class SelectCollector extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _SelectCollectorState createState() => _SelectCollectorState();
 }
 
-class _HomeState extends State<Home> {
-  Collector selectedCollector;
+class _SelectCollectorState extends State<SelectCollector> {
+  Collector selectedCollector = null;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +46,10 @@ class _HomeState extends State<Home> {
           children: [
             DropdownButton<Collector>(
               value: selectedCollector,
+              hint: Text("Selecione usuário"),
               icon: Icon(Icons.arrow_downward),
               iconSize: 24,
-              elevation: 20,
+              elevation: 16,
               style: TextStyle(color: Colors.grey[900], fontSize: 18),
               underline: Container(
                 height: 2,
@@ -66,22 +67,35 @@ class _HomeState extends State<Home> {
                 );
               }).toList(),
             ),
-            FlatButton(
-              onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return NovaColeta(selectedCollector);
-                }));
-              },
-              child: Text(
-                "Próximo", style:
-                TextStyle(
-                  color: Colors.grey[50],
-                  fontSize: 16
-                )
+            Builder(builder: (context) =>
+              FlatButton(
+                onPressed: () {
+                  if (selectedCollector == null) {
+                    final snackBar = SnackBar(
+                      content: Text('Selecione um usuário para prosseguir!'),
+                    );
+
+                    // Find the Scaffold in the widget tree and use
+                    // it to show a SnackBar.
+                    Scaffold.of(context).showSnackBar(snackBar);
+                    return;
+                  }
+
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return Menu(selectedCollector);
+                  }));
+                },
+                child: Text(
+                  "Próximo", style:
+                  TextStyle(
+                    color: Colors.grey[50],
+                    fontSize: 16
+                  )
+                ),
+                color: Theme.of(context).primaryColor,
               ),
-              color: Theme.of(context).primaryColor,
-            )
+            ),
           ],
         ),
       ),
