@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:audio_recorder/audio_recorder.dart';
-import 'package:file/file.dart';
 import 'package:file/local.dart';
-
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class Gravacao extends StatefulWidget {
-
   final LocalFileSystem localFileSystem;
 
   Gravacao({localFileSystem})
       : this.localFileSystem = localFileSystem ?? LocalFileSystem();
-
 
   @override
   _GravacaoState createState() => _GravacaoState();
 }
 
 class _GravacaoState extends State<Gravacao> {
-
+  final StopWatchTimer _stopWatchTimer = StopWatchTimer();
 
   Recording _recording = Recording();
   bool _isRecording = false;
 
-  _start() async {
+  void _start() async {
     try {
       if (await AudioRecorder.hasPermissions) {
-          await AudioRecorder.start();
+        await AudioRecorder.start();
         bool isRecordingAux = await AudioRecorder.isRecording;
         setState(() {
           _recording = Recording(duration: Duration(), path: "");
@@ -33,14 +30,14 @@ class _GravacaoState extends State<Gravacao> {
         });
       } else {
         Scaffold.of(context).showSnackBar(
-          SnackBar(content: Text("You must accept permissions")));
+            SnackBar(content: Text("You must accept permissions")));
       }
     } catch (e) {
       print(e);
     }
   }
 
-   _stop() async {
+  void _stop() async {
     var recording = await AudioRecorder.stop();
     bool isRecording = await AudioRecorder.isRecording;
     setState(() {
@@ -48,8 +45,6 @@ class _GravacaoState extends State<Gravacao> {
       _isRecording = isRecording;
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +56,35 @@ class _GravacaoState extends State<Gravacao> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              child: RaisedButton(
-                color: Theme.of(context).primaryColor,
-                child: Text("Começar a gravar", 
-                    style: TextStyle(color: Colors.white),
-                ),
-                onPressed: _isRecording ? null: _start,
-              ),
-            ),
-            Container(
-              child: RaisedButton(
-                color: Theme.of(context).primaryColor,
-                child: Text("Parar de gravar", 
-                    style: TextStyle(color: Colors.white),
-                ),
-                onPressed: _isRecording ? _stop: null,
-            )),
+            StreamBuilder<int>(
+                stream: _stopWatchTimer.rawTime,
+                initialData: 0,
+                builder: (context, snap) {
+                  final time = snap.data;
+                  return Text(StopWatchTimer.getDisplayTime(time, hours: false, minute: false), style: TextStyle(
+                    fontSize: 38
+                  ),);
+                }),
+            GestureDetector(
+                onLongPressStart: (_) {
+                  _stopWatchTimer.onExecute.add(StopWatchExecute.start);
+                  _start();
+                },
+                onLongPressEnd: (_) {
+                  _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
+                  _stop();
+                  _stopWatchTimer.onExecute.add(StopWatchExecute.reset);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  child: Icon(
+                    Icons.mic,
+                    color: Colors.white,
+                  ),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      shape: BoxShape.circle),
+                ))
           ],
         ),
       ),
