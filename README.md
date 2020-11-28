@@ -1,16 +1,27 @@
-# app
+# Spira - app
 
-A new Flutter project.
+Repositório para a aplicação do [Spira](https://spira.ime.usp.br/), um novo método de triagem baseado em áudio e inteligência artificial.
 
-## Getting Started
+## Setup
 
-This project is a starting point for a Flutter application.
+O projeto é implementado com Flutter. Caso nunca tenha utilizado Flutter, siga as instruções para instalação da ferramenta e do emulador  mobile: [get-started](https://flutter.dev/docs/get-started/install).
 
-A few resources to get you started if this is your first Flutter project:
+## Executando
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Para desenvolver o app localmente.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone o repositório. 
+
+```sh
+$ git clone https://github.com/spirabr/app
+```
+
+2. Inicie ou conecte o dispositivo em que vai desenvolver.
+
+3. Execute.
+
+```sh
+$ flutter run
+```
+
+Seu app será iniciado no dispositivo citado no passo 2 em modo desenvolvimento. Quaisquer mudanças no código serão refletidas no dispositivo através do hot reload.
