@@ -29,8 +29,8 @@ class _GravacaoState extends State<Gravacao> {
           _isRecording = isRecordingAux;
         });
       } else {
-        Scaffold.of(context).showSnackBar(
-            SnackBar(content: Text("You must accept permissions")));
+        //Scaffold.of(context).showSnackBar(
+         //   SnackBar(content: Text("You must accept permissions")));
       }
     } catch (e) {
       print(e);
@@ -82,7 +82,7 @@ class _GravacaoState extends State<Gravacao> {
                     color: Colors.white,
                   ),
                   decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
+                      color: _isRecording ? Colors.grey : Theme.of(context).primaryColor,
                       shape: BoxShape.circle),
                 ))
           ],
