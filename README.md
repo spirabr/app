@@ -4,7 +4,7 @@ Repositório para a aplicação do [Spira](https://spira.ime.usp.br/), um novo m
 
 ## Setup
 
-O projeto é implementado com Flutter. Caso nunca tenha utilizado Flutter, siga as instruções para instalação da ferramenta e do emulador  mobile: [get-started](https://flutter.dev/docs/get-started/install).
+O projeto é implementado com Flutter. Caso nunca tenha utilizado Flutter, siga as instruções para instalação da ferramenta e do emulador mobile: [get-started](https://flutter.dev/docs/get-started/install).
 
 ## Executando
 
@@ -16,7 +16,7 @@ Para desenvolver o app localmente.
 $ git clone https://github.com/spirabr/app
 ```
 
-2. Inicie ou conecte o dispositivo em que vai desenvolver.
+2. Inicie o emulador ou conecte um dispositivo em que vai desenvolver.
 
 3. Execute.
 
