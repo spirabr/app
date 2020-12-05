@@ -8,7 +8,7 @@ Primeiramente, instale o [flutter](https://flutter.dev/docs/get-started/install)
 
 
 
-Em seguida, rode o seguinte comando:
+Em seguida, rode o seguinte comando na raiz do projeto:
 
 
 
