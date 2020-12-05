@@ -4,7 +4,7 @@
 
 
 
-Primeiramente, instale o [flutter](shttps://flutter.dev/docs/get-started/install) em sua máquina
+Primeiramente, instale o [flutter](https://flutter.dev/docs/get-started/install) em sua máquina
 
 
 
