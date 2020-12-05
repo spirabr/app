@@ -22,7 +22,7 @@ environment:
 
 dependencies:
   stop_watch_timer: ^0.6.0+1
-  audio_recorder: ^1.0.2
+  flutter_sound: ^6.0.0
   flutter:
     sdk: flutter
 
