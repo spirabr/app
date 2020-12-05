@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'novaColeta.dart';
+
+import 'package:SPIRA/constants.dart' as contants;
+import 'package:SPIRA/new_samples.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,8 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'SPIRA',
       theme: ThemeData(
         brightness: Brightness.light,
-        accentColor: darkGreen,
-        primaryColor: brightGreen,
+        accentColor: contants.darkGreen,
+        primaryColor: contants.brightGreen,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Montserrat',
       ),
@@ -71,10 +72,13 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  return NovaColeta(dropdownValue);
+                  return NewSamples(dropdownValue);
                 }));
               },
-              child: Text("Próximo", style: TextStyle(color: Colors.white)),
+              child: Text(
+                "Próximo",
+                style: TextStyle(color: Colors.white),
+              ),
               color: Theme.of(context).primaryColor,
             )
           ],

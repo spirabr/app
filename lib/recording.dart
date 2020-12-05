@@ -4,12 +4,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
-class Gravacao extends StatefulWidget {
+class Recording extends StatefulWidget {
   @override
-  _GravacaoState createState() => _GravacaoState();
+  _RecordingState createState() => _RecordingState();
 }
 
-class _GravacaoState extends State<Gravacao> {
+class _RecordingState extends State<Recording> {
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
   final FlutterSoundRecorder _mRecorder = FlutterSoundRecorder();
   String _mPath;

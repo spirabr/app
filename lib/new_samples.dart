@@ -1,13 +1,14 @@
-import 'package:app/gravacao.dart';
 import 'package:flutter/material.dart';
 
-class NovaColeta extends StatefulWidget {
-  NovaColeta(String dropdownValue);
+import 'package:SPIRA/recording.dart';
+
+class NewSamples extends StatefulWidget {
+  NewSamples(String dropdownValue);
   @override
-  _NovaColetaState createState() => _NovaColetaState();
+  _NewSamplesState createState() => _NewSamplesState();
 }
 
-class _NovaColetaState extends State<NovaColeta> {
+class _NewSamplesState extends State<NewSamples> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,40 +48,37 @@ class _NovaColetaState extends State<NovaColeta> {
                 onPressed: () {},
               ),
               Container(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
-                  ),
-                  child: Container(
-                    width: 186,
-                    height: 191,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 70.0,
+                  child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
+                      child: Container(
+                        width: 186,
+                        height: 191,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 70.0,
+                            ),
+                            Text(
+                              "Nova Coleta",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          "Nova Coleta",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return Gravacao();
-                }));
-                 })
-    
-                ),
-            
+                      ),
+                      onPressed: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return Recording();
+                        }));
+                      })),
               Container(
                 child: TextButton(
                   child: Text(
