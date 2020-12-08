@@ -1,3 +1,4 @@
+import 'package:SPIRA/recording.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
@@ -60,7 +61,13 @@ class _MenuState extends State<Menu> {
                       ],
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) {
+                        return Recording();
+                      }),
+                    );
+                  },
                 ),
               ),
               Container(
