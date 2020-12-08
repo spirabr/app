@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
-import 'package:SPIRA/recording.dart';
-import 'package:SPIRA/constants.dart';
+class Menu extends StatefulWidget {
+  final Collector selectedCollector;
 
-class NewSamples extends StatefulWidget {
-  NewSamples(String selectedCollector);
+  Menu(Collector this.selectedCollector);
+
   @override
-  _NewSamplesState createState() => _NewSamplesState();
+  _MenuState createState() => _MenuState();
 }
 
-class _NewSamplesState extends State<NewSamples> {
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,7 @@ class _NewSamplesState extends State<NewSamples> {
             children: [
               Container(
                   child: Text(
-                "Bem vinda(o)!",
+                "Bem vinda(o), ${widget.selectedCollector.toString()}!",
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: 20,
@@ -35,37 +36,32 @@ class _NewSamplesState extends State<NewSamples> {
               )),
               Container(
                 child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
-                    ),
-                    child: Container(
-                      width: 186,
-                      height: 191,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add,
+                  style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ),
+                  child: Container(
+                    width: 186,
+                    height: 191,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 70.0,
+                        ),
+                        Text(
+                          "Nova Coleta",
+                          style: TextStyle(
                             color: Colors.white,
-                            size: 70.0,
+                            fontSize: 24,
                           ),
-                          Text(
-                            "Nova Coleta",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return Recording();
-                        }),
-                      );
-                    }),
+                  ),
+                  onPressed: () {},
+                ),
               ),
               Container(
                 child: TextButton(
