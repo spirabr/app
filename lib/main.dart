@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'menu.dart';
+
+import 'package:SPIRA/constants.dart' as contants;
+import 'package:SPIRA/menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,8 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'SPIRA',
       theme: ThemeData(
         brightness: Brightness.light,
-        accentColor: darkGreen,
-        primaryColor: brightGreen,
+        accentColor: contants.darkGreen,
+        primaryColor: contants.brightGreen,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Montserrat',
       ),
@@ -29,14 +30,14 @@ class SelectCollector extends StatefulWidget {
 }
 
 class _SelectCollectorState extends State<SelectCollector> {
-  Collector selectedCollector = null;
+  contants.Collector selectedCollector = null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("SPIRA - Selecione seu usuário"),
-        backgroundColor: brightGreen,
+        backgroundColor: contants.brightGreen,
       ),
       body: Container(
         width: double.infinity,
@@ -44,7 +45,7 @@ class _SelectCollectorState extends State<SelectCollector> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            DropdownButton<Collector>(
+            DropdownButton<contants.Collector>(
               value: selectedCollector,
               hint: Text("Selecione usuário"),
               icon: Icon(Icons.arrow_downward),
@@ -55,20 +56,22 @@ class _SelectCollectorState extends State<SelectCollector> {
                 height: 2,
                 color: Theme.of(context).accentColor,
               ),
-              onChanged: (Collector newCollector) {
+              onChanged: (contants.Collector newCollector) {
                 setState(() {
                   selectedCollector = newCollector;
                 });
               },
-              items: collectors.map<DropdownMenuItem<Collector>>((Collector c) {
-                return DropdownMenuItem<Collector>(
+              items: contants.collectors
+                  .map<DropdownMenuItem<contants.Collector>>(
+                      (contants.Collector c) {
+                return DropdownMenuItem<contants.Collector>(
                   value: c,
                   child: Text(c.toString()),
                 );
               }).toList(),
             ),
-            Builder(builder: (context) =>
-              FlatButton(
+            Builder(
+              builder: (context) => FlatButton(
                 onPressed: () {
                   if (selectedCollector == null) {
                     final snackBar = SnackBar(
@@ -86,13 +89,8 @@ class _SelectCollectorState extends State<SelectCollector> {
                     return Menu(selectedCollector);
                   }));
                 },
-                child: Text(
-                  "Próximo", style:
-                  TextStyle(
-                    color: Colors.grey[50],
-                    fontSize: 16
-                  )
-                ),
+                child: Text("Próximo",
+                    style: TextStyle(color: Colors.grey[50], fontSize: 16)),
                 color: Theme.of(context).primaryColor,
               ),
             ),

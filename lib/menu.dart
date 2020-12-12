@@ -1,3 +1,4 @@
+import 'package:SPIRA/recording.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
@@ -26,16 +27,15 @@ class _MenuState extends State<Menu> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                child: Text(
-                  "Bem vinda(o), ${widget.selectedCollector.toString()}!",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize:  20,
-                  ),
-                  textAlign: TextAlign.center,
-                )
-              ),
-              Container (
+                  child: Text(
+                "Bem vinda(o), ${widget.selectedCollector.toString()}!",
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.center,
+              )),
+              Container(
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
@@ -61,10 +61,16 @@ class _MenuState extends State<Menu> {
                       ],
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) {
+                        return Recording();
+                      }),
+                    );
+                  },
                 ),
               ),
-              Container (
+              Container(
                 child: TextButton(
                   child: Text(
                     "Instruções",

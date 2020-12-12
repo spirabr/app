@@ -1,4 +1,4 @@
-name: app
+name: SPIRA
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  stop_watch_timer: ^0.6.0+1
+  flutter_sound: ^6.0.0
   flutter:
     sdk: flutter
 
