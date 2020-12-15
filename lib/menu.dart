@@ -1,5 +1,6 @@
 import 'package:SPIRA/recording.dart';
 import 'package:flutter/material.dart';
+import 'package:SPIRA/collector.dart';
 import 'constants.dart';
 
 class Menu extends StatefulWidget {
@@ -27,14 +28,15 @@ class _MenuState extends State<Menu> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                  child: Text(
-                "Bem vinda(o), ${widget.selectedCollector.toString()}!",
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 20,
+                child: Text(
+                  "Bem vinda(o), ${widget.selectedCollector.toString()}!",
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              )),
+              ),
               Container(
                 child: TextButton(
                   style: TextButton.styleFrom(

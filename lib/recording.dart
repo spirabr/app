@@ -10,12 +10,12 @@ class Recording extends StatefulWidget {
 }
 
 class _RecordingState extends State<Recording> {
-  final StopWatchTimer _stopWatchTimer = StopWatchTimer();
-  final FlutterSoundRecorder _mRecorder = FlutterSoundRecorder();
   String _mPath;
   bool _mRecorderStarted;
 
   bool _isRecording = false;
+  final StopWatchTimer _stopWatchTimer = StopWatchTimer();
+  final FlutterSoundRecorder _mRecorder = FlutterSoundRecorder();
 
   @override
   void initState() {
@@ -24,6 +24,7 @@ class _RecordingState extends State<Recording> {
         _mRecorderStarted = true;
       });
     });
+
     super.initState();
   }
 
@@ -82,24 +83,32 @@ class _RecordingState extends State<Recording> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             StreamBuilder<int>(
-                stream: _stopWatchTimer.rawTime,
-                initialData: 0,
-                builder: (context, snap) {
-                  final time = snap.data;
-                  return Text(
-                    StopWatchTimer.getDisplayTime(time,
-                        hours: false, minute: false),
-                    style: TextStyle(fontSize: 38),
-                  );
-                }),
+              stream: _stopWatchTimer.rawTime,
+              initialData: 0,
+              builder: (context, snap) {
+                final time = snap.data;
+
+                return Text(
+                  StopWatchTimer.getDisplayTime(
+                    time,
+                    hours: false,
+                    minute: false,
+                  ),
+                  style: TextStyle(fontSize: 38),
+                );
+              },
+            ),
             GestureDetector(
               onLongPressStart: (_) {
                 _stopWatchTimer.onExecute.add(StopWatchExecute.start);
+
                 _start();
               },
               onLongPressEnd: (_) {
                 _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
+
                 _stop();
+
                 _stopWatchTimer.onExecute.add(StopWatchExecute.reset);
               },
               child: Container(
