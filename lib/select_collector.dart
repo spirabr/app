@@ -49,7 +49,7 @@ class _SelectCollectorState extends State<SelectCollector> {
               }).toList(),
             ),
             Builder(
-              builder: (context) => FlatButton(
+              builder: (context) => TextButton(
                 onPressed: () {
                   if (selectedCollector == null) {
                     final snackBar = SnackBar(
@@ -62,17 +62,17 @@ class _SelectCollectorState extends State<SelectCollector> {
                     return;
                   }
 
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) {
-                      return Menu(selectedCollector);
-                    }),
-                  );
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return Menu(selectedCollector);
+                  }));
                 },
-                child: Text(
-                  "Próximo",
-                  style: TextStyle(color: Colors.grey[50], fontSize: 16),
+                child: Text("Próximo"),
+                style: TextButton.styleFrom(
+                  primary: Colors.white,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  textStyle: TextStyle(color: Colors.grey[50], fontSize: 16),
                 ),
-                color: Theme.of(context).primaryColor,
               ),
             ),
           ],
